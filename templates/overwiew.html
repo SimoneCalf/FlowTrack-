@@ -42,6 +42,14 @@
             text-decoration: none;
             cursor: pointer;
         }
+        /* Add margin to input fields */
+        .modal-content input {
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
     </style>
 </head>
 <body>
@@ -69,21 +77,57 @@
     {% endfor %}
 </select>
 <h2>Mutations</h2>
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>Account</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+    </tr>
+    {% for mutation in mutations %}
+        <tr>
+            <td>{{ mutation.amount }}</td>
+            <td>{{ mutation.account }}</td>
+            <td>{{ mutation.date }}</td>
+            <td>{{ mutation.description }}</td>
+            <td>{{ mutation.category }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+
 <button id="addMutationBtn">add mutation</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <form action="/submit" method="post">
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description" required>
-            <label for="amount">Amount:</label>
-            <input type="number" id="amount" name="amount" required>
+        
+        <form action="/add_mutation" method="post">
+            <span class="close">&times;</span>
+            <div>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <div>
+                <label for="account">Account:</label>
+                <input type="text" id="account" name="account" required>
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" required>
+            </div>
+            <div>
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" required>
+            </div>
             <input type="submit" value="Submit">
+            
         </form>
     </div>
 

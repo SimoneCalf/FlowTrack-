@@ -10,7 +10,7 @@ def validate_user(username, password):
     # Create a cursor object to execute SQL commands
     cursor = conn.cursor()
     # Execute a SQL command
-    cursor.execute("SELECT Username, Password FROM Users WHERE Username = ? AND Password = ?", (username, password))
+    cursor.execute("SELECT * FROM Users WHERE Username = ? AND Password = ?", (username, password))
     result = cursor.fetchone()
     print(result)
     # Close the connection
@@ -19,7 +19,7 @@ def validate_user(username, password):
     if result is None:
         return False
     else:
-        return True
+        return result[0]
 
     
 

@@ -62,6 +62,8 @@ def get_mutations(user_id):
 
         # Sort the list of mutations by date in descending order
         list_mutations.sort(key=lambda x: x['date'])
+
+        print(f'lijst: {list_mutations}')
     
     
     return list_mutations

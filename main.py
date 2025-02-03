@@ -39,7 +39,8 @@ def add_mutation():
     print(amount, account, date, comment, category)
     queries.add_mutation(amount, account, date, comment, category, session['User_id'])
     mutations = queries.get_mutations(session['User_id'])
-    return render_template('overwiew.html', mutations=mutations)
+    categories = queries.get_categories(session['User_id'])
+    return render_template('overwiew.html', mutations=mutations, categories=categories)
 
 
 

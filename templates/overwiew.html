@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overview</title>
     <style>
+
+       
+
+   
+     
         /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
@@ -91,7 +96,7 @@
             <td>{{ mutation.account }}</td>
             <td>{{ mutation.date }}</td>
             <td>{{ mutation.description }}</td>
-            <td>{{ mutation.category }}</td>
+            <td>{{ mutation.category}} </td>
         </tr>
     {% endfor %}
 </table>
@@ -124,7 +129,13 @@
             </div>
             <div>
                 <label for="category">Category:</label>
-                <input type="text" id="category" name="category" required>
+                <select name="category">
+                    {% for category in categories %}
+                        <option value="{{ category.category_id }}">
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <input type="submit" value="Submit">
             

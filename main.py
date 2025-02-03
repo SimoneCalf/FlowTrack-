@@ -24,7 +24,9 @@ def submit():
 
 @app.route('/overwiew', methods=['GET'])
 def overwiew():
-    return render_template('overwiew.html')
+    mutations = queries.get_mutations(session['User_id'])
+    categories = queries.get_categories(session['User_id'])
+    return render_template('overwiew.html', categories=categories, mutations=mutations)
 
 @app.route('/add_mutation', methods=['POST'])
 def add_mutation():
@@ -35,7 +37,9 @@ def add_mutation():
     category = request.form['category']
     
     print(amount, account, date, comment, category)
-    return render_template('overwiew.html')
+    queries.add_mutation(amount, account, date, comment, category, session['User_id'])
+    mutations = queries.get_mutations(session['User_id'])
+    return render_template('overwiew.html', mutations=mutations)
 
 
 
